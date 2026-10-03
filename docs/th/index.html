@@ -1,0 +1,175 @@
+<!doctype html><html lang="th" translate="no" class="notranslate"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google" content="notranslate">
+<script>if(/[.]translate[.]goog$/.test(location.hostname))location.replace("https://"+location.hostname.slice(0,-15).replace(/--/g,"~").replace(/-/g,".").replace(/~/g,"-")+location.pathname+location.search.replace(/([?&])_x_tr_[^&]*/g,"$1").replace(/[?&]+$/,"").replace(/[?]&+/,"?")+location.hash)</script>
+<title>กนก วาดด้วยคณิต · Kranok, Drawn</title>
+<meta name="description" content="กระหนก เปลวไฟแห่งลายไทย วาดด้วยคณิต ตั้งแต่คำ ตัวเหงา กราฟเดียวที่ดัดเปลวทั้งตัว กนกสามตัว กนกซ้อนกนก ลายก้านขด เจ็ดวิธีซ้ำลายหน้ากระดาน ลายรดน้ำ และลายคำล้านนา ภาษาไทยและอังกฤษ">
+<meta name="theme-color" content="#120c0a">
+<link rel="canonical" href="https://nanobotco.github.io/kranok/th/">
+<link rel="alternate" hreflang="en" href="https://nanobotco.github.io/kranok/"><link rel="alternate" hreflang="th" href="https://nanobotco.github.io/kranok/th/"><link rel="alternate" hreflang="x-default" href="https://nanobotco.github.io/kranok/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Kranok, Drawn · กนก วาดด้วยคณิต">
+<meta property="og:title" content="กนก วาดด้วยคณิต"><meta property="og:description" content="กระหนก เปลวไฟแห่งลายไทย วาดด้วยคณิต ตั้งแต่คำ ตัวเหงา กราฟเดียวที่ดัดเปลวทั้งตัว กนกสามตัว กนกซ้อนกนก ลายก้านขด เจ็ดวิธีซ้ำลายหน้ากระดาน ลายรดน้ำ และลายคำล้านนา ภาษาไทยและอังกฤษ"><meta property="og:url" content="https://nanobotco.github.io/kranok/th/">
+<meta property="og:image" content="https://nanobotco.github.io/kranok/card.jpg"><meta property="og:image:secure_url" content="https://nanobotco.github.io/kranok/card.jpg"><meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="เปลวกนกสีทองกับลายก้านขดบนพื้นรักสีดำ">
+<meta property="og:locale" content="th_TH"><meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nanobotco.github.io/kranok/card.jpg">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="alternate" type="text/plain" href="https://nanobotco.github.io/kranok/llms.txt" title="llms.txt">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
+<script>if(/[?&]card/.test(location.search))document.documentElement.classList.add("card")</script>
+<style>:root{--cave:#120c0a;--rock:#2a1712;--rock2:#3a211a;--ink:#f6ecd6;--dim:#c9b99a;--lamp:#f2c75c;--water:#7cc8ff;--deep:#7a1f17;--line:#9be38c;--paper:#f7f0e1;--pink:#ff8f7a;--pinkd:#c4402a;--text:#22170f;--mute:#6a5a48;--rule:#e2d4b8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--text);font:17px/1.6 "Noto Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif}
+html[lang=th] body{font-size:18px;line-height:1.75}
+a{color:#8a5a00}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+h1,h2,h3{font-family:Fraunces,"Noto Serif Thai",Georgia,serif;font-weight:700;line-height:1.15;margin:0 0 .4em}
+html[lang=th] h1,html[lang=th] h2,html[lang=th] h3{font-family:"Noto Serif Thai",Fraunces,serif;line-height:1.35}
+h2{font-size:clamp(28px,4.6vw,46px)}
+h3{font-size:22px}
+.in{max-width:1080px;margin:0 auto;padding:0 16px}
+.kick{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 .5em;font-weight:600}
+html[lang=th] .kick{text-transform:none;letter-spacing:0}
+.intro{font-size:19px;max-width:44em}
+.sec{padding:72px 0}
+.sec p{max-width:44em}
+.dark{background:var(--cave);color:var(--ink)}
+.dark a{color:var(--lamp)}
+.dark .kick{color:var(--dim)}
+.rock{background:var(--rock);color:var(--ink)}
+.rock a{color:var(--lamp)}
+.rock .kick{color:var(--dim)}
+canvas{display:block;width:100%;touch-action:pan-y}
+.cv{border-radius:14px;background:#120c0a}
+.note{font-size:14px;color:var(--mute);margin-top:.6em}
+.dark .note,.rock .note{color:var(--dim)}
+/* top bar */
+header.top{position:sticky;top:0;z-index:20;background:rgba(18,12,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ink);transition:transform .25s}
+header.top .in{display:flex;align-items:center;gap:14px;min-height:52px;max-width:1240px}
+.brand{display:flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none;font-weight:700;white-space:nowrap}
+.brand svg{width:28px;height:28px}
+header.top nav{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;flex:1;font-size:15px}
+header.top nav::-webkit-scrollbar{display:none}
+header.top nav a{color:var(--dim);text-decoration:none;white-space:nowrap;padding:6px 0}
+header.top nav a:hover{color:var(--lamp)}
+.lang{white-space:nowrap;font-size:15px;color:var(--dim)}
+.lang a{color:var(--lamp)}
+body.nav-away header.top{transform:translateY(-100%)}
+@media (max-width:720px){.brand span{display:none}}
+/* hero */
+.hero{position:relative;background:var(--cave);color:var(--ink);overflow:hidden}
+.hero canvas{height:min(78vh,720px);min-height:460px}
+.hero-t{position:absolute;left:0;right:0;top:0;padding:28px 16px 0;max-width:1080px;margin:0 auto;pointer-events:none}
+.hero-t h1{font-size:clamp(38px,7.4vw,86px);margin:0;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.hero-t .kick{color:#f3dfae;text-shadow:0 1px 8px #000}
+.hero-t .lede{font-size:clamp(17px,2.2vw,21px);max-width:30em;text-shadow:0 1px 10px #000;margin:.4em 0 0}
+.tbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 16px 18px;max-width:1080px;margin:0 auto}
+.tbar input[type=range]{flex:1 1 280px;accent-color:var(--lamp);min-height:32px}
+.tdate{font-weight:700;min-width:9em;font-variant-numeric:tabular-nums}
+.tev{flex:1 1 100%;margin:0;min-height:3.4em;color:#e9e3d4;font-size:17px;max-width:46em}
+.pill{font:inherit;font-size:15px;border:1.5px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:6px 14px;cursor:pointer;min-height:36px}
+.pill.hot{background:var(--lamp);color:#1b1206;border-color:var(--lamp);font-weight:700}
+.pill[aria-pressed=true]{background:var(--ink);color:var(--cave)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+html.card header.top,html.card .tbar,html.card main>section:not(.hero),html.card footer{display:none}
+html.card .hero canvas{height:100vh;min-height:0}
+html.card .hero-t{padding-top:46px;padding-left:56px;max-width:none}
+html.card .hero-t h1{font-size:96px}
+.ph{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:20px}
+.ph figure{margin:0}
+.ph img{width:100%;height:auto;border-radius:10px;display:block;background:#ddd}
+.ph figcaption{font-size:14px;color:var(--mute);margin-top:6px;line-height:1.5}
+.dark .ph figcaption,.rock .ph figcaption{color:var(--dim)}
+.src{font-size:15px;padding-left:1.2em}
+.src li{margin:.3em 0}
+footer.bot{background:var(--cave);color:var(--dim);padding:28px 0;font-size:14px}
+footer.bot a{color:var(--lamp)}
+.math{font-family:"STIX Two Math","Cambria Math",Georgia,serif;font-size:1.15em;background:rgba(242,199,92,.14);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.dark .math,.rock .math{background:rgba(242,199,92,.16);color:#ffe7a8}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.seg .pill{font-size:14px;padding:5px 12px;min-height:34px}
+.seg .pill[aria-pressed=true]{background:var(--lamp);color:#1b1206;border-color:var(--lamp)}
+.fz{margin-top:8px}
+.fz b{font-size:19px;color:var(--lamp)}
+.fz p{margin:.2em 0 0}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.steps .pill{min-width:40px}
+.steptext{min-height:4.8em;margin:.4em 0 0}
+.glos{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:20px}
+.glos div{background:#fffaf0;border:1px solid var(--rule);border-radius:12px;padding:12px 14px}
+.glos b{display:block;font-size:20px;font-family:"Noto Serif Thai",Fraunces,serif}
+.glos i{font-style:normal;color:var(--mute);font-size:14px}
+.glos p{margin:.3em 0 0;font-size:15px}
+#owncv{cursor:crosshair;touch-action:none}
+.cv{background:#120c0a}
+.hero{background:#120c0a}
+.lede-wrap{max-width:46em}
+html.card .cardline{display:block}
+.cardline{display:none;font-size:22px;color:#f3dfae;margin-top:16px;text-shadow:0 1px 8px #000}
+.cardline span{font-size:18px;color:var(--lamp)}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.readout div{background:rgba(255,255,255,.06);border-radius:10px;padding:10px 12px}
+.sec:not(.dark):not(.rock) .readout div{background:#efe3c8}
+.readout span{display:block;font-size:13px;color:var(--dim)}
+.sec:not(.dark):not(.rock) .readout span{color:var(--mute)}
+.readout b{font-size:22px;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--lamp);min-height:32px}
+label.lab{display:block;font-size:15px;margin-top:10px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.ph img{max-height:560px;object-fit:contain;background:transparent}
+</style>
+</head><body>
+<header class="top"><div class="in"><a class="brand" href="#top"><img src="../icon.svg" width="28" height="28" alt=""><span>กนก วาดด้วยคณิต</span></a>
+<nav aria-label="หัวข้อ"><a href="#kranok">กระหนก</a><a href="#curl">ตัวเหงา</a><a href="#bend">ความโค้ง</a><a href="#three">กนกสามตัว</a><a href="#nest">ซ้อน</a><a href="#scroll">ก้านขด</a><a href="#borders">ลายขอบ</a><a href="#draw">วาด</a><a href="#where">ภาพ</a><a href="#words">ศัพท์</a><a href="#sources">ที่มา</a></nav>
+<span class="lang"><b>ไทย</b> | <a href="../" hreflang="en">EN</a></span></div></header>
+<main><section id="top" class="hero"><canvas id="scene" role="img" aria-label="ลายก้านขดเปลวกนกสีทองค่อย ๆ งอกบนพื้นรักสีดำ"></canvas>
+<div class="hero-t"><p class="kick">ลายไทย วาดด้วยคณิต</p><h1>กนก วาดด้วยคณิต</h1><p class="lede">กระหนกคือเปลวไฟที่เป็นรากของลายไทย เป็นทองบนพื้นรักดำของบานประตูโบสถ์และตู้พระธรรม จำหลักอยู่บนหน้าบัน และอยู่บนหัวโขน ทุกเปลวในหน้านี้วาดจากสมการเดียว ลองเลื่อนเมาส์เข้าใกล้ เปลวจะเอนหนี</p><p class="cardline">เปลวไฟแห่งลายไทย วาดด้วยคณิต<br><span>nanobotco.github.io/kranok</span></p></div></section>
+<section id="kranok" class="sec"><div class="in"><p class="kick">กระหนก</p><h2>คำที่แปลว่าทอง ลายที่เป็นเปลวไฟ</h2><p>พจนานุกรมฉบับราชบัณฑิตยสถานเขียนชื่อลายนี้ว่า กระหนก คือลายไทยประเภทหนึ่ง ใช้ผูกเขียนเป็นลวดลาย มีทั้งระบายสี ปิดทองรดน้ำ ปั้น หรือแกะสลัก มีหลายแบบ เช่น กระหนกเปลว กระหนกก้านขด และเขียนเป็น กนก ก็มี ส่วนคำว่า กนก (กะ-หนก) เมื่ออยู่ลำพังแปลว่าทองคำ มาจากบาลีและสันสกฤต <i>kanaka</i> วิกิพีเดียภาษาไทยอ้างว่าสมเด็จฯ เจ้าฟ้ากรมพระยานริศรานุวัดติวงศ์ทรงสันนิษฐานว่า คำนี้เดิมใช้เรียกตู้ลายทอง แล้วจึงมาเรียกลายบนตู้นั้น</p><p>งานเขียนไทยแบ่งเป็นสี่หมวด คือ หมวดกระหนก ได้แก่ลวดลาย หมวดนารี ได้แก่ภาพมนุษย์และเทวดา หมวดกระบี่ ได้แก่ลิงและยักษ์ในรามเกียรติ์ และหมวดคชะ ได้แก่สัตว์ทั้งจริงและในป่าหิมพานต์ ตำราของครูช่างให้แม่ลายพื้นฐานห้าแบบ คือ แม่ลายกระจัง พุ่มข้าวบิณฑ์ ประจำยาม ดาว และกระหนก</p><p>ที่มาของรูปทรงยังเป็นที่ถกเถียง วิกิพีเดียภาษาไทยว่าต้นแบบมาจากหางไหล ซึ่งมาจากลักษณะของเปลวไฟ ครูบางท่านเพิ่มหางงูเข้าไปด้วย อาจารย์สันติ เล็กสุขุม ถูกอ้างว่าเห็นที่มาในลวดลายอินเดียสมัยคุปตะ และเห็นดอกบัวเป็นต้นแบบของกระหนกสามตัว แหล่งข้อมูลไทยยังนับยอดผักกูด เถาวัลย์ กาบไผ่ ใบฝ้ายเทศ และเปลวไฟ เป็นแบบของลายไทย</p><p>กระหนกสามตัวเป็นแม่ลาย ถือเป็นแม่แบบของกระหนกทั้งหลาย และเป็นจุดเริ่มของการเรียน ครูโรงเรียนช่างฝีมือในวังเริ่มสอนจากลายนี้ สำนักช่างสิบหมู่ กรมศิลปากร ดูแลช่างสิบหมู่ ได้แก่ ช่างเขียน ช่างแกะ ช่างสลัก ช่างกลึง ช่างหล่อ ช่างปั้น ช่างหุ่น ช่างรัก ช่างบุ และช่างปูน</p></div></section>
+<section id="curl" class="sec dark"><div class="in two"><div><canvas id="curlcv" class="cv" role="img" aria-label="เกลียวที่รูปร่างไม่เปลี่ยน"></canvas></div>
+<div><p class="kick">ตัวเหงา</p><h2>เกลียวที่รูปร่างไม่เปลี่ยน</h2><p>ที่โคนของกนก เส้นจะม้วนเข้าเป็นขด เกลียวลอการิทึมเข้ากับขดนี้ได้ดี เกลียวแบบนี้ขยายด้วยอัตราเท่าเดิมทุกรอบ ขดเล็กกับขดใหญ่จึงมีรูปร่างเหมือนกัน และเส้นจะตัดเส้นรัศมีจากจุดศูนย์กลางด้วยมุมเท่ากันทุกเส้น</p><p>เกลียวอีกแบบที่พบบ่อยคือเกลียวอาร์คิมิดีส ซึ่งเพิ่มระยะห่างเท่าเดิมทุกรอบ เหมือนเสื่อที่ม้วนไว้ ลองสลับดูแล้วสังเกตช่องว่างระหว่างรอบ</p>
+<div class="seg" role="group"><button class="pill" type="button" data-curl="log" aria-pressed="true">ลอการิทึม</button><button class="pill" type="button" data-curl="arch" aria-pressed="false">อาร์คิมิดีส</button></div>
+<div id="cbw"><label class="lab" for="cb">อัตราขยาย</label><input id="cb" type="range" min="0.06" max="0.32" step="0.005" value="0.14"></div><label class="lab" for="ct">จำนวนรอบ</label><input id="ct" type="range" min="1" max="3.5" step="0.05" value="2.5">
+<div class="readout"><div><span>แต่ละรอบ</span><b id="cr1">–</b></div><div><span>มุมกับเส้นจากจุดศูนย์กลาง</span><b id="cr2">–</b></div></div>
+<p class="note">เกลียวลอการิทึมเขียนได้ว่า <span class="math">r = e<sup>bθ</sup></span> r คือระยะจากจุดศูนย์กลาง θ คือมุมที่หมุนไป b คืออัตราขยาย ทุกหนึ่งรอบ r จะคูณด้วย <span class="math">e<sup>2πb</sup></span> ครูสอนให้ขดหัวเหมือนก้นหอย ยังไม่มีงานตีพิมพ์ที่วัดว่าขดที่วาดด้วยมือเป็นเกลียวแบบไหน เกลียวลอการิทึมเป็นแบบจำลองของหน้านี้</p></div></div></section>
+<section id="bend" class="sec rock"><div class="in"><p class="kick">กราฟเดียว</p><h2>กราฟเดียววาดได้ทั้งเปลว</h2><p>เส้นโค้งเส้นหนึ่งบอกได้ด้วยสิ่งเดียว คือมันโค้งมากแค่ไหนที่แต่ละจุดตามความยาว กราฟคือความโค้งของเปลวทองที่อยู่ข้างกัน ตั้งแต่ตาขดจนถึงปลาย เปลี่ยนกราฟ เปลวก็เปลี่ยนตาม</p>
+<canvas id="bendcv" class="cv" role="img" aria-label="กราฟเดียววาดได้ทั้งเปลว"></canvas>
+<div class="readout" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div><label class="lab" for="bturns">จำนวนรอบของขด</label><input id="bturns" type="range" min="0.3" max="2.4" step="0.05" value="1.15"></div><div><label class="lab" for="bflick">การสะบัดปลาย</label><input id="bflick" type="range" min="-4" max="16" step="0.5" value="7"></div><div><label class="lab" for="bteeth">จำนวนบาก</label><input id="bteeth" type="range" min="0" max="6" step="1" value="3"></div><div><label class="lab" for="bdepth">ความลึกของบาก</label><input id="bdepth" type="range" min="0" max="1.2" step="0.05" value="0.55"></div></div>
+<p>ใกล้ตาขด ความโค้งสูงมากแล้วลดลงเป็นหนึ่งส่วนระยะทาง <span class="math">κ = a / s</span> ส่วนนี้คือเกลียวลอการิทึม ช่วงกลางความโค้งเกือบเป็นศูนย์ ตัวเปลวจึงเกือบตรง ใกล้ปลายความโค้งติดลบ เส้นโค้งกลับอีกทาง ปลายจึงสะบัด</p><p>นักคณิตศาสตร์เรียกสิ่งนี้ว่าสมการธรรมชาติของเส้นโค้ง คือความโค้งตามความยาว โดยไม่สนว่าเส้นอยู่ตรงไหนบนกระดาษ รวมความโค้งได้ทิศทาง รวมทิศทางได้เส้น บากบนหลังกระหนกวางซ้อนลงไปอีกชั้น เป็นฟันเลื่อยที่ค่อย ๆ ขึ้นแล้วตกฉับ ปลายแต่ละบากถูกดันไปทางยอด</p></div></section>
+<section id="three" class="sec"><div class="in two"><div><canvas id="threecv" class="cv" role="img" aria-label="กระหนกสามตัว"></canvas></div>
+<div><p class="kick">กนกสามตัว</p><h2>กระหนกสามตัว</h2><p>แม่ลายนี้มีสามตัว ตัวเหงา คือตัวขด อยู่ล่างสุดและอยู่หน้า ตัวประกบหรือกาบ อยู่หลังตัวเหงา และตัวยอด คือเปลวที่ปลาย พจนานุกรมฉบับราชบัณฑิตยสถานให้ความหมายของ เหงา ว่าชื่อลายกระหนกตัวแรก บทเรียนในโรงเรียนเล่นคำว่าตัวเหงาก้มหน้าดูเศร้า ๆ เหงา ๆ</p><p>สูตรหนึ่ง: ร่างสี่เหลี่ยมผืนผ้าตั้งสัดส่วน 4 ต่อ 2 ลากเส้นทแยง วางกาบไว้มุมล่างซ้าย ลากเส้นจากโคนเข้าหัว แล้วขึ้นไปถึงยอดที่มุมบนขวา ลากกลับลงมาเป็นเปลว แบ่งเป็นสามตัว บาก แล้วใส่ไส้ ครูอีกท่านใช้สามเหลี่ยมมุมฉากสูง 3 กว้าง 2 และให้หัวกระหนกล้นออกนอกกรอบเล็กน้อย กระหนกจะดูมีชีวิต</p>
+<div class="steps" role="group" aria-label="กระหนกสามตัว"><button class="pill" type="button" data-step="0" aria-pressed="false">1</button><button class="pill" type="button" data-step="1" aria-pressed="false">2</button><button class="pill" type="button" data-step="2" aria-pressed="false">3</button><button class="pill" type="button" data-step="3" aria-pressed="false">4</button><button class="pill" type="button" data-step="4" aria-pressed="false">5</button><button class="pill" type="button" data-step="5" aria-pressed="false">6</button><button id="tplay" class="pill hot" type="button">เล่น</button></div>
+<p id="steptext" class="steptext" aria-live="polite"></p><p class="note">แต่ละตัวในภาพนี้คือเปลวหนึ่งตัวจากกราฟความโค้งข้างบน มีท้องกลมล้อมขด ภาพลายเส้นต้นแบบอยู่เป็นภาพแรกในหัวข้อภาพ</p></div></div></section>
+<section id="nest" class="sec dark"><div class="in two"><div><canvas id="nestcv" class="cv" role="img" aria-label="กนกในกนก"></canvas></div>
+<div><p class="kick">เปลวบนเปลว</p><h2>กนกในกนก</h2><p>บากแต่ละบากบนหลังกระหนกจบด้วยเปลวเล็ก ๆ ลองให้ทุกบากงอกเป็นกระหนกทั้งตัว แล้วให้ทุกบากของตัวใหม่งอกต่อไปอีก ช่างสถาปัตย์พูดถึงตัวกระหนกที่ซ้อนกัน และรายงานวิจัยของมหาวิทยาลัยบูรพาปี 2557 ตั้งใจจำลองรูปแบบแฟร็กทัลของกระหนก การซ้อนแบบนี้เป็นของหน้านี้เอง</p><p>ถ้ามีสามบาก และตัวลูกมีขนาด r เท่าของตัวแม่ ชั้นที่ n จะมี <span class="math">3<sup>n</sup></span> เปลว แต่ละเปลวมีพื้นที่ <span class="math">r<sup>2n</sup></span> ของเปลวแรก ทองทั้งหมดรวมเป็นอนุกรมเรขาคณิต <span class="math">1 + 3r² + (3r²)² + …</span> ซึ่งเข้าใกล้ <span class="math">1 / (1 − 3r²)</span> เท่าของเปลวแรก ตราบที่ <span class="math">3r² &lt; 1</span> ถ้า r เกินราว 0.58 ทองจะเพิ่มไม่สิ้นสุด</p>
+<label class="lab" for="ndepth">จำนวนชั้น</label><input id="ndepth" type="range" min="0" max="4" step="1" value="2"><label class="lab" for="nratio">ขนาดของตัวลูก</label><input id="nratio" type="range" min="0.25" max="0.6" step="0.01" value="0.42">
+<div class="readout"><div><span>จำนวนเปลว</span><b id="ncount">–</b></div><div><span>ทองทั้งหมด ถ้าซ้อนไปไม่สิ้นสุด</span><b id="ngold">–</b></div></div>
+<p class="note">จำนวนเปลวนับได้ตรง ส่วนที่ซ้อนทับนับซ้ำ ตัวเลขทองจึงเป็นค่าสูงสุด</p></div></div></section>
+<section id="scroll" class="sec rock"><div class="in"><p class="kick">ลายก้านขด</p><h2>ลายก้านขด</h2><p>พจนานุกรมฉบับราชบัณฑิตยสถานให้ความหมายว่า ลายที่เขียนเป็นลายขดไปขดมา ก้านเลื้อยเป็นคลื่นไปตามแถบ จากแต่ละไหล่คลื่นมีก้านแยกออก โค้งแรงขึ้นเรื่อย ๆ จนม้วนเป็นขดในแอ่งถัดไป เปลวกนกงอกอยู่ด้านนอกของแต่ละขด</p><p>ก้านแยกคือขดของเปลวที่เดินจากอีกด้าน ความโค้งเท่าเดิม <span class="math">κ = a / (L − s)</span> แต่นับถอยจากปลายก้าน มันจึงม้วนแน่นขึ้นเรื่อย ๆ กดเฉพาะเส้นเพื่อดูโครง</p>
+<canvas id="scrollcv" class="cv" role="img" aria-label="ลายก้านขด"></canvas>
+<div class="btns"><button id="sgrow" class="pill hot" type="button">ให้งอก</button><button id="sbones" class="pill" type="button" aria-pressed="false">เฉพาะเส้น</button></div>
+<div class="readout" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div><label class="lab" for="swaves">จำนวนคลื่น</label><input id="swaves" type="range" min="1" max="6" step="0.5" value="3"></div><div><label class="lab" for="sturns">จำนวนรอบของขด</label><input id="sturns" type="range" min="0.5" max="2.4" step="0.05" value="1.3"></div><div><label class="lab" for="sleaves">เปลวต่อขด</label><input id="sleaves" type="range" min="0" max="8" step="1" value="5"></div></div>
+<p class="note">คลื่นคือโคไซน์ ก้านแยกเริ่มที่จุดชันที่สุด เลี้ยวซ้ายหลังยอดคลื่น เลี้ยวขวาหลังท้องคลื่น</p></div></section>
+<section id="borders" class="sec dark"><div class="in"><p class="kick">ลายหน้ากระดาน</p><h2>เจ็ดวิธีซ้ำลายตามแถบ</h2><p>ลายหน้ากระดานคือลายแถบยาวบนพื้นตั้งระหว่างบัว ซ้ำลายเดียวไปตามแถบ ไม่ว่าจะวาดอย่างไร แถบที่ซ้ำลายต้องใช้หนึ่งในเจ็ดแบบของการเลื่อน การพลิก และการหมุนครึ่งรอบ นักคณิตศาสตร์เรียกว่ากรุปลายแถบ (frieze group) เจ็ดกรุป</p><p>การสำรวจปราสาทหินแบบเขมรเจ็ดแห่งในอีสานใต้เมื่อปี 2566 พบสี่ในเจ็ดแบบ คือ p2mm p1 p1m1 และ p11m ยังไม่มีงานตีพิมพ์ที่นับลายหน้ากระดานภาคกลาง</p>
+<canvas id="friezecv" class="cv" role="img" aria-label="เจ็ดวิธีซ้ำลายตามแถบ"></canvas>
+<div class="seg" role="group"><button class="pill" type="button" data-f="p1" aria-pressed="true">เลื่อน</button><button class="pill" type="button" data-f="p11g" aria-pressed="false">ก้าวเดิน</button><button class="pill" type="button" data-f="p1m1" aria-pressed="false">กระจกตั้ง</button><button class="pill" type="button" data-f="p11m" aria-pressed="false">กระจกนอน</button><button class="pill" type="button" data-f="p2" aria-pressed="false">หมุนครึ่งรอบ</button><button class="pill" type="button" data-f="p2mg" aria-pressed="false">กระจกตั้งกับรอยเท้า</button><button class="pill" type="button" data-f="p2mm" aria-pressed="false">กระจกสองทาง</button></div><div class="fz"><b id="fname"></b><p id="fdesc"></p></div>
+<div class="two" style="margin-top:46px"><div><canvas id="rosecv" class="cv" role="img" aria-label="รอบจุดเดียว"></canvas></div>
+<div><h3>รอบจุดเดียว</h3><p>หมุนเปลวรอบจุดศูนย์กลาง n ครั้ง ได้สมมาตรการหมุน <span class="math">C<sub>n</sub></span> เพิ่มกระจกเข้าไป ได้ <span class="math">D<sub>n</sub></span> ซึ่งมีวิธีขยับที่ภาพไม่เปลี่ยนมากขึ้นสองเท่า ลายดอกรอบจุดทุกลายมีสมมาตรแบบใดแบบหนึ่งในสองแบบนี้ สำหรับ n สักค่า</p><label class="lab" for="rn">จำนวนตัวรอบจุดศูนย์กลาง</label><input id="rn" type="range" min="2" max="12" step="1" value="4">
+<div class="btns"><button id="rm" class="pill" type="button" aria-pressed="true">กระจก</button></div>
+<div class="readout"><div><span>สมมาตร</span><b id="rsym">–</b></div></div><p class="note">ประจำยาม ดอกสี่กลีบที่วางคั่นลายอื่น สมมาตรทั้งแกนตั้งและแกนนอน คือ D4</p></div></div></div></section>
+<section id="draw" class="sec rock"><div class="in"><p class="kick">วาด</p><h2>วาดเอง</h2><p>ลากเส้นด้วยนิ้วหรือเมาส์ ยกนิ้วเมื่อไร ปลายเส้นจะม้วนเป็นขดด้วยความโค้งแบบเดียวกับก้านขด แล้วงอกเปลวกนกสลับซ้ายขวา วาดกี่เส้นก็ได้ แล้วบันทึกภาพ</p>
+<canvas id="owncv" class="cv" role="img" aria-label="ลากเส้นตรงนี้"></canvas>
+<div class="btns"><button id="oseed" class="pill hot" type="button">เริ่มให้หนึ่งเส้น</button><button id="oclear" class="pill" type="button">ล้าง</button><button id="osave" class="pill" type="button">บันทึกภาพ</button></div></div></section>
+<section id="where" class="sec"><div class="in"><p class="kick">อยู่ที่ไหน</p><h2>ทองบนรักดำ</h2><p>ลายรดน้ำ คือการปิดทองคำเปลวบนพื้นลงรักสีดำ แล้วรดน้ำในขั้นสุดท้าย ทองจึงติดอยู่เฉพาะตรงที่เป็นลาย พบบนบานประตู หน้าต่าง ผนัง และตู้พระธรรมที่เก็บคัมภีร์ใบลาน กระหนกยังเต็มอยู่บนหน้าบันจำหลัก หัวโขนและเครื่องศิราภรณ์ เครื่องเบญจรงค์ งานประดับมุก และปูนปั้นปิดทองประดับกระจก</p><p>สำหรับหน้าบัน บานประตู หรือตู้ ช่างเขียนลายครึ่งเดียว ลอกลงกระดาษไข พลิกกระดาษ แล้วทาบให้ตรงเส้นกลาง ได้ความสมมาตรแบบกระจกด้วยมือ</p><p>นิทรรศการ ทำ-ลาย ของศิลปิน กชวัช บูรณภิญโญ เปลี่ยนตัวกระหนกเป็นหมา แมว เป็ด และนกการ์ตูนที่ตัวงอได้ แต่ไม่มีกบหรือคางคก เพราะตัวกลม ๆ ไปตามแม่ลายไม่ได้</p>
+<div class="ph"><figure><img loading="lazy" src="../img/01-kranok-sam-tua-drawing.jpg" width="1600" height="3023" alt="กระหนกสามตัว แม่ลายที่ผู้เรียนลายไทยฝึกเขียนเป็นอย่างแรก วางในกรอบสี่เหลี่ยมผืนผ้าตั้ง แต่ละตัวมีขดและเส้นไส้"><figcaption>กระหนกสามตัว แม่ลายที่ผู้เรียนลายไทยฝึกเขียนเป็นอย่างแรก วางในกรอบสี่เหลี่ยมผืนผ้าตั้ง แต่ละตัวมีขดและเส้นไส้ <a href="https://commons.wikimedia.org/wiki/File:Kranok_sam_tua.svg">Paul_012</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">Public domain (PD-ineligible; also released CC0 1.0)</a></figcaption></figure><figure><img loading="lazy" src="../img/02-lai-rot-nam-door-wat-kasattrathirat.jpg" width="1600" height="1200" alt="ลายรดน้ำบนบานประตู วัดกษัตราธิราช อยุธยา ตัวกระหนกเรียงซ้ำเต็มพื้นที่"><figcaption>ลายรดน้ำบนบานประตู วัดกษัตราธิราช อยุธยา ตัวกระหนกเรียงซ้ำเต็มพื้นที่ <a href="https://commons.wikimedia.org/wiki/File:048_Door_Pattern_(9192320964).jpg">Photo Dharma from Sadao, Thailand</a> · <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></figcaption></figure><figure><img loading="lazy" src="../img/03-tripitaka-cabinet-wat-rakhang.jpg" width="1536" height="1024" alt="ตู้พระธรรมลายรดน้ำสมัยอยุธยา ในหอพระไตรปิฎก วัดระฆังโฆสิตาราม กรุงเทพฯ"><figcaption>ตู้พระธรรมลายรดน้ำสมัยอยุธยา ในหอพระไตรปิฎก วัดระฆังโฆสิตาราม กรุงเทพฯ <a href="https://commons.wikimedia.org/wiki/File:Watrakhanghortrai052000b.jpg">Heinrich Damm (User:Hdamm, Hdamm at de.wikipedia.org)</a> · <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a></figcaption></figure><figure><img loading="lazy" src="../img/04-gable-wat-ratchaburana.jpg" width="960" height="720" alt="หน้าบันจำหลักปิดทอง วัดราชบุรณราชวรวิหาร กรุงเทพฯ ลายกระหนกเต็มพื้นที่สามเหลี่ยม"><figcaption>หน้าบันจำหลักปิดทอง วัดราชบุรณราชวรวิหาร กรุงเทพฯ ลายกระหนกเต็มพื้นที่สามเหลี่ยม <a href="https://commons.wikimedia.org/wiki/File:%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%9A%E0%B8%B1%E0%B8%99_%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%93%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%A7%E0%B8%A3%E0%B8%A7%E0%B8%B4%E0%B8%AB%E0%B8%B2%E0%B8%A3.jpg">กสิณธร ราชโอรส</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></figcaption></figure><figure><img loading="lazy" src="../img/05-royal-barge-suphannahong-bow.jpg" width="1600" height="1600" alt="โขนเรือพระที่นั่งสุพรรณหงส์ จำหลักรูปหงส์ ลงรักปิดทองประดับกระจก (ซ้อมใหญ่ 29 ต.ค. 2550)"><figcaption>โขนเรือพระที่นั่งสุพรรณหงส์ จำหลักรูปหงส์ ลงรักปิดทองประดับกระจก (ซ้อมใหญ่ 29 ต.ค. 2550) <a href="https://commons.wikimedia.org/wiki/File:Suphannahongsa_bow.jpg">Lerdsuwa</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></figcaption></figure><figure><img loading="lazy" src="../img/06-stucco-gate-wat-phra-that-lampang-luang.jpg" width="1600" height="2393" alt="ปูนปั้นล้านนา ซุ้มประตูโขง วัดพระธาตุลำปางหลวง ลายกระหนกและลายเปลวซ้อนกันหลายชั้น"><figcaption>ปูนปั้นล้านนา ซุ้มประตูโขง วัดพระธาตุลำปางหลวง ลายกระหนกและลายเปลวซ้อนกันหลายชั้น <a href="https://commons.wikimedia.org/wiki/File:ThaiWatPhrathatLampangLuang02.jpg">Ziegler175</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></figcaption></figure><figure><img loading="lazy" src="../img/07-gilt-pillars-wihan-luang-lampang-luang.jpg" width="1600" height="1200" alt="วิหารหลวง วัดพระธาตุลำปางหลวง เสาลงรักดำ ประดับลายคำ (ลายทองฉลุ)"><figcaption>วิหารหลวง วัดพระธาตุลำปางหลวง เสาลงรักดำ ประดับลายคำ (ลายทองฉลุ) <a href="https://commons.wikimedia.org/wiki/File:Lampang_Luang_02.jpg">ErwinMeier</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></figcaption></figure><figure><img loading="lazy" src="../img/08-wihan-lai-kham-wat-phra-singh-chiang-mai.jpg" width="1600" height="1200" alt="ภายในวิหารลายคำ วัดพระสิงห์วรมหาวิหาร เชียงใหม่ งานลายคำล้านนาสีแดงและทองรอบพระพุทธสิหิงค์"><figcaption>ภายในวิหารลายคำ วัดพระสิงห์วรมหาวิหาร เชียงใหม่ งานลายคำล้านนาสีแดงและทองรอบพระพุทธสิหิงค์ <a href="https://commons.wikimedia.org/wiki/File:Interior_of_the_Wihan_Lai_Kham_of_Wat_Phra_Sing_in_Chiang_Mai.jpg">Christophe95</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></figcaption></figure><figure><img loading="lazy" src="../img/09-lai-rot-nam-doi-suthep.jpg" width="1600" height="1200" alt="ลายรดน้ำบนบานประตู วัดพระธาตุดอยสุเทพ เชียงใหม่ รูปเทวดาในกรอบลายกระหนก"><figcaption>ลายรดน้ำบนบานประตู วัดพระธาตุดอยสุเทพ เชียงใหม่ รูปเทวดาในกรอบลายกระหนก <a href="https://commons.wikimedia.org/wiki/File:Wat_Phra_That_Doi_Suthep_D_29.jpg">Dinkum</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0">CC0</a></figcaption></figure></div>
+<h3 style="margin-top:42px">ทางเหนือ</h3><p>ในล้านนาเรียกทองว่า คำ ลายคำมักลงบนพื้นชาดสีแดง และที่วัดพระธาตุลำปางหลวงลงบนพื้นรักดำด้วย ทองติดลงผ่านแม่พิมพ์ฉลุ หรือขูดลาย หรือทั้งสองอย่าง แม่พิมพ์มีลายกระหนก ลายดอกไม้ ลายเรขาคณิต และเทพนม วัดพระสิงห์ เชียงใหม่ มีวิหารลายคำ</p><p>ปูนปั้นล้านนายุคแรก เช่นที่วัดป่าสัก เชียงแสน หนาและซ้อนหลายชั้น ได้อิทธิพลจากหริภุญชัย พุกาม สุโขทัย เขมร และลังกา ต่อมาช่างธรรมาสน์อยุธยายืมลายล้านนาไปใช้ รวมถึงตัวเหงาที่มุม</p></div></section>
+<section id="words" class="sec"><div class="in"><h2>ศัพท์</h2><div class="glos"><div><b>กระหนก · กนก</b><i>kranok</i><p>ลายรูปเปลวไฟ กนก คำเดียวแปลว่าทอง</p></div><div><b>ตัวเหงา</b><i>tua ngao</i><p>ตัวขด ตัวแรกและตัวล่างสุดของกระหนก</p></div><div><b>ตัวประกบ · กาบ</b><i>tua prakop · kap</i><p>ตัวที่อยู่หลังตัวเหงา</p></div><div><b>ตัวยอด</b><i>tua yot</i><p>เปลวที่พุ่งขึ้นไปถึงยอด</p></div><div><b>บาก</b><i>bak</i><p>รอยบากบนหลังตัวลาย มีบากเข้าและบากออก</p></div><div><b>ไส้</b><i>sai</i><p>เส้นใน เขียนอ่อนกว่าเส้นรูป</p></div><div><b>แม่ลาย</b><i>mae lai</i><p>ลายตอนที่เป็นประธาน ซ้ำ ๆ กันเป็นแถว</p></div><div><b>หางไหล</b><i>hang lai</i><p>ลายหางปลาไหล เส้นคล้ายเปลวที่เป็นโครงของกระหนกเปลว</p></div><div><b>กระหนกเปลว</b><i>kranok plaeo</i><p>กระหนกที่ปลายสะบัดเหมือนเปลว ราวหกถึงเจ็ดบากต่อตัว</p></div><div><b>กระหนกใบเทศ</b><i>kranok bai thet</i><p>กระหนกที่มีกาบ บากเข้าบากออก และไส้</p></div><div><b>ลายก้านขด</b><i>lai kan khot</i><p>ลายที่เขียนเป็นก้านขดไปขดมา</p></div><div><b>ลายกระจัง</b><i>lai krachang</i><p>ลายในรูปสามเหลี่ยม เรียงตามขอบ</p></div><div><b>ประจำยาม</b><i>prachamyam</i><p>ดอกไม้สี่กลีบ วางเป็นระยะคั่นลายอื่น</p></div><div><b>ลายหน้ากระดาน</b><i>lai na kradan</i><p>ลายแถบยาวบนพื้นตั้งระหว่างบัว</p></div><div><b>ลายรดน้ำ</b><i>lai rot nam</i><p>ทองบนพื้นรักดำ รดน้ำในขั้นสุดท้าย</p></div><div><b>ลายคำ</b><i>lai kham</i><p>ลายทองล้านนา มักลงบนพื้นแดง</p></div><div><b>ช่างสิบหมู่</b><i>chang sip mu</i><p>ช่างสิบประเภท และชื่อสำนักในกรมศิลปากร</p></div></div></div></section>
+<section id="sources" class="sec"><div class="in"><h2>ที่มา</h2><p>ข้อเท็จจริงมาจากแหล่งเหล่านี้ ส่วนวิธีวาด การเทียบกับเกลียว และการซ้อนกนก เป็นของหน้านี้เอง นักวิจัยไทยเคยสร้างกระหนกด้วยเส้นโค้งเบซิเย (ศิลปากร 2551 บูรพา 2557) และจำลองบากแต่ละบากเป็นเส้นโค้งรูปตัว S สองเส้น (มจธ. 2566)</p><ul class="src"><li><a href="https://dictionary.orst.go.th/">Royal Institute dictionary (ORST): กระหนก, กนก, เหงา, ก้านขด, กระจัง, ประจำยาม, ลายรดน้ำ</a></li><li><a href="https://th.wikipedia.org/wiki/%E0%B8%A5%E0%B8%B2%E0%B8%A2%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%99%E0%B8%81">Thai Wikipedia: ลายกระหนก</a></li><li><a href="https://en.wikipedia.org/wiki/Kranok_pattern">English Wikipedia: Kranok pattern</a></li><li><a href="https://so05.tci-thaijo.org/index.php/fineartstujournal/article/view/261678">Narit Vadhanabhu (2022), Fine &amp; Applied Arts Journal, Thammasat 15(2)</a></li><li><a href="https://www.thairath.co.th/scoop/1947195">Thairath (8 Oct 2020): instructors of the Royal Craftsmanship School</a></li><li><a href="https://jitdrathanee.com/studio/lesson05.htm">JitdraThanee: Thai pattern lessons 1–9</a></li><li><a href="https://so01.tci-thaijo.org/index.php/AJA/article/view/266371">Jiravansirikul &amp; Areerungruang (2023), Silpakorn</a></li><li><a href="https://so05.tci-thaijo.org/index.php/arts/article/download/256174/172596">Boonserm et al., Journal of Fine and Applied Arts, Thammasat</a></li><li><a href="https://soad.kmutt.ac.th/wp-content/uploads/2023/12/2023INTC02.pdf">Thamwiset (2023), Analysis of Traditional Thai Pattern, KMUTT</a></li><li><a href="https://buuir.buu.ac.th/jspui/bitstream/1234567890/17675/1/2569-538.pdf">Leelatrakul, Rimcharoen &amp; Wachirahatpong (2014), Evolutionary Algorithm for Modelling Kranok Pattern, Burapha University</a></li><li><a href="https://atcm.mathandtech.org/ep2008/papers_full/2412008_15316.pdf">Toadithep &amp; Itisarn (2008), Curve Fitting and Animated Drawing Thai Painting, ATCM</a></li><li><a href="https://ph02.tci-thaijo.org/index.php/scibru/article/view/249117">Hobanthad et al. (2023), frieze and rosette groups at stone temples, Buriram Rajabhat</a></li><li><a href="https://so09.tci-thaijo.org/index.php/barts/article/view/4579">Neti Phikroh (2024), lai kham, Journal of Buddhist Arts 7(1)</a></li><li><a href="https://so09.tci-thaijo.org/index.php/tmwj/article/view/585">Kajondet Niwyin (2022), lai kham at Wat Phra Singh and Lampang Luang, Journal of Thammawat 3(2)</a></li><li><a href="https://so09.tci-thaijo.org/index.php/barts/article/view/7722">Teerapong Jatuma (2025), Lanna stucco, Journal of Buddhist Arts 8(2)</a></li><li><a href="https://so01.tci-thaijo.org/index.php/damrong/article/view/254845">Patison Benyasuta (2022), Ayutthaya pulpits, Damrong Journal</a></li><li><a href="https://th.wikipedia.org/wiki/%E0%B8%8A%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%9A%E0%B8%AB%E0%B8%A1%E0%B8%B9%E0%B9%88">Thai Wikipedia: ช่างสิบหมู่</a></li><li><a href="https://th.wikipedia.org/wiki/%E0%B8%A5%E0%B8%B2%E0%B8%A2%E0%B8%A3%E0%B8%94%E0%B8%99%E0%B9%89%E0%B8%B3">Thai Wikipedia: ลายรดน้ำ</a></li><li><a href="https://commons.wikimedia.org/">Wikimedia Commons: every photograph, with its licence</a></li></ul></div></section>
+</main><footer class="bot"><div class="in">ข้อความ CC BY 4.0 NaNoBotCo โค้ด MIT ภาพถ่ายใช้สัญญาอนุญาตของแต่ละภาพ · <a href="https://github.com/NaNoBotCo/kranok">GitHub</a> · <a href="https://motdang.net/">motdang.net</a> · <a href="https://hongdam.net/">hongdam.net</a></div></footer>
+<script>window.UI={"same_gap": "ระยะเท่าเดิม", "changes": "เปลี่ยนไป", "b_axis_y": "ความโค้ง", "b_axis_x": "ไปตามเส้น", "b_eye": "ตาขด", "b_tip": "ยอด", "r_moves": "แบบ", "own_hint": "ลากเส้นตรงนี้", "frieze": {"p1": ["เลื่อน", "p1 เลื่อนอย่างเดียว ทุกตัวหันทางเดียวกัน"], "p11g": ["ก้าวเดิน", "p11g เลื่อนแล้วพลิกข้ามเส้นกลาง เหมือนรอยเท้า"], "p1m1": ["กระจกตั้ง", "p1m1 มีกระจกตั้งคั่นระหว่างตัวที่อยู่ติดกัน"], "p11m": ["กระจกนอน", "p11m กระจกบานเดียววางตามเส้นกลาง"], "p2": ["หมุนครึ่งรอบ", "p2 หมุนครึ่งรอบระหว่างตัวที่อยู่ติดกัน"], "p2mg": ["กระจกตั้งกับรอยเท้า", "p2mg มีทั้งกระจกตั้งและการพลิกแบบรอยเท้า"], "p2mm": ["กระจกสองทาง", "p2mm กระจกทั้งแนวตั้งและแนวนอน"]}, "steps": ["ร่างสี่เหลี่ยมผืนผ้าตั้ง สูงเป็นสองเท่าของความกว้าง แล้วลากเส้นทแยงจากมุมล่างซ้ายไปมุมบนขวา", "ตัวเหงา อยู่ล่างสุดและอยู่หน้า หัวขดเหมือนก้นหอย", "ตัวประกบหรือกาบ อยู่หลังตัวเหงา ส่งเส้นต่อขึ้นไป", "ตัวยอด เปลวที่พุ่งขึ้นไปถึงมุมบน", "บากบนหลังของแต่ละตัว", "เส้นไส้ เขียนให้อ่อนกว่าเส้นรูป แล้วปิดทองบนพื้นรักดำ"], "part_names": ["ตัวเหงา", "ตัวประกบ · กาบ", "ตัวยอด"], "play": "เล่น", "pause": "หยุด", "lang": "th"};</script>
+<script src="../kranok.js"></script><script src="../three.js"></script><script src="../app.js"></script><script src="../top.js"></script>
+</body></html>
