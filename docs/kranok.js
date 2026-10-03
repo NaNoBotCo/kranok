@@ -18,8 +18,8 @@
   // curl turns -> a, so the curl winds o.turns times between the eye and curlEnd
   K.opts = function (p) {
     var o = {
-      turns: 1.15, eye: 0.012, curlEnd: 0.3, body: 0.6, flick: 7, width: 0.16,
-      teeth: 3, depth: 0.55, lean: 0.25, len: 100, mirror: false, growth: 1, sharp: 1.6, hook: 1.4
+      turns: 1.4, eye: 0.02, curlEnd: 0.24, body: 0.5, flick: 6, width: 0.4,
+      teeth: 4, depth: 0.45, lean: 0.25, len: 100, mirror: false, sharp: 1.5, hook: 1.3, taper: 0.7, saiEnd: 0.8
     };
     for (var k in p) o[k] = p[k];
     o.a = (o.turns * TAU) / Math.log((o.curlEnd + o.eye) / o.eye);
@@ -41,14 +41,18 @@
     return pts;
   };
 
-  function widthAt(s, o) {
-    var c = o.curlEnd;
-    var grow = s < c ? Math.pow(s / c, 1.1) * 0.55 : 0.55 + 0.45 * Math.sin(Math.min(1, (s - c) / 0.2) * Math.PI / 2);
-    var taper = Math.pow(Math.max(0, 1 - s), 0.85) / Math.pow(1 - c, 0.85);
-    return o.width * grow * Math.min(1.25, taper);
+  function profile(s, o) {
+    var c = o.curlEnd, rise = 0.07;
+    if (s <= c) return 1;                                   // the curl is limited by its own turns, below
+    var u = (s - c) / (1 - c);
+    var bell = 1;
+    return bell * Math.pow(Math.max(0, 1 - u), o.taper) ;
   }
 
-  // place the raw curve: base (end of curl) at origin, tip straight up then leaned, length o.len
+  // place the raw curve: base (end of curl) at origin, tip straight up then leaned, length o.len.
+  // The line itself is the front edge; the body hangs off its back, notched; inside the curl the
+  // body grows only as wide as the gap to the next turn, so the head fills in gold and the spiral
+  // shows as the black line between its turns.
   K.flame = function (p) {
     var o = K.opts(p), raw = K.spine(o, p.n);
     var ic = Math.round(o.curlEnd * (raw.length - 1));
@@ -61,59 +65,64 @@
       return { x: m * (X * cr - Y * sr), y: X * sr + Y * cr };
     }
     var sp = raw.map(function (q) { var r = tf(q); r.s = q.s; return r; });
-    // normals from neighbours
-    var inner = [], outer = [], vein = [], tips = [], lastF = 0;
+    var back = [], tips = [], lastF = 0, W = o.width * o.len / d * d;   // width in output units
+    W = o.width * o.len;
+    var bb = 1 / o.a, G = Math.exp(TAU / o.a), gapK = 0.8 * (G - 1) / (1 + bb * bb);
     function tipAt(i) {
-      var q0 = outer[outer.length - 1], b0 = sp[i - 1], b1 = sp[Math.min(sp.length - 1, i + 1)];
+      var q0 = back[back.length - 1], b0 = sp[i - 1], b1 = sp[Math.min(sp.length - 1, i + 1)];
       var a1 = Math.atan2(q0.y - b0.y, q0.x - b0.x), a2 = Math.atan2(b1.y - b0.y, b1.x - b0.x);
-      var d = Math.atan2(Math.sin(a2 - a1), Math.cos(a2 - a1));
-      tips.push({ x: q0.x, y: q0.y, ang: a1 + d * 0.45, s: sp[i].s });
+      var dd = Math.atan2(Math.sin(a2 - a1), Math.cos(a2 - a1));
+      tips.push({ x: q0.x, y: q0.y, ang: a1 + dd * 0.45, s: sp[i].s });
     }
-    var c = o.curlEnd, tEnd = 0.93, W = o.len / sc;
+    var c = o.curlEnd, t0 = c + 0.06, tEnd = 0.9, ws = [];
     for (var i = 0; i < sp.length; i++) {
       var a0 = sp[Math.max(0, i - 1)], a1 = sp[Math.min(sp.length - 1, i + 1)];
       var tx = a1.x - a0.x, ty = a1.y - a0.y, tl = Math.hypot(tx, ty) || 1;
-      var nx = -ty / tl, ny = tx / tl;
-      // inner side = toward the curl's centre (left of travel before mirroring)
+      var nx = ty / tl, ny = -tx / tl;                     // the back: away from the curl's centre
       if (o.mirror) { nx = -nx; ny = -ny; }
-      var s = sp[i].s, w = widthAt(s, o) * o.len / (d / 1);
+      var s = sp[i].s, w = W * profile(s, o);
+      if (s < c) w = Math.min(w, gapK * (s + o.eye) / o.a * o.len / d);   // no wider than the gap to the next turn
+      else if (s < c + 0.12) {                                           // ease from the head into the body
+        var wc = Math.min(W, gapK * (c + o.eye) / o.a * o.len / d), k = (s - c) / 0.12;
+        k = k * k * (3 - 2 * k); w = wc + (w - wc) * k;
+      }
+      ws.push(w);
       var tooth = 0;
-      if (o.teeth > 0 && s > c + 0.04 && s < tEnd) {
-        var ph = (s - c - 0.04) / (tEnd - c - 0.04) * o.teeth, f = ph - Math.floor(ph);
-        var env = Math.sin(Math.PI * Math.min(1, (s - c) / (tEnd - c))) * 0.7 + 0.3;
-        tooth = o.depth * w * Math.pow(f, o.sharp) * env;
+      if (o.teeth > 0 && s > t0 && s < tEnd) {
+        var ph = (s - t0) / (tEnd - t0) * o.teeth, f = ph - Math.floor(ph);
+        tooth = o.depth * w * Math.pow(f, o.sharp);
         if (f < lastF) tipAt(i);
         lastF = f;
       } else if (lastF > 0 && s >= tEnd) { tipAt(i); lastF = 0; }
-      inner.push({ x: sp[i].x + nx * w * 0.42, y: sp[i].y + ny * w * 0.42 });
-      // a tooth leans toward the tip: push its point forward along the line as it grows
-      var tl2 = tl || 1, ux = tx / tl2, uy = ty / tl2, fw = tooth * o.hook;
-      outer.push({ x: sp[i].x - nx * (w * 0.58 + tooth) + ux * fw, y: sp[i].y - ny * (w * 0.58 + tooth) + uy * fw });
-      if (s > c * 0.55 && s < 0.8) vein.push({ x: sp[i].x - nx * w * 0.1, y: sp[i].y - ny * w * 0.1 });
+      var ux = tx / tl, uy = ty / tl, fw = tooth * o.hook, ww = w * (1 - o.depth * 0.5) + tooth;
+      back.push({ x: sp[i].x + nx * ww + ux * fw, y: sp[i].y + ny * ww + uy * fw, nx: nx, ny: ny });
     }
-    var outline = inner.concat(outer.reverse());
-    var tp = sp[sp.length - 1], tq = sp[sp.length - 4], belly = null;
-    if (o.fat) {
-      // the body wraps its curl: a round belly around the eye, the spiral drawn inside as a line
-      var ex = 0, ey = 0, nE = 0, rr = 0;
-      for (var j = 0; j < ic; j++) { ex += sp[j].x; ey += sp[j].y; nE++; }
-      ex /= nE; ey /= nE;
-      for (var j2 = 0; j2 <= ic; j2++) rr = Math.max(rr, Math.hypot(sp[j2].x - ex, sp[j2].y - ey));
-      belly = { x: ex, y: ey, r: rr * o.fat, curl: sp.slice(0, Math.round(ic * 1.15)) };
+    var outline = sp.map(function (q) { return { x: q.x, y: q.y }; }).concat(back.slice().reverse());
+    // the inner line (sai): a pointed leaf inside the body, round at the curl, closing near the tip
+    var vein = [], vb = [], s0 = c - 0.04, se = o.saiEnd;
+    for (var j = 0; j < sp.length; j++) {
+      var q = sp[j];
+      if (q.s < s0 || q.s > se) continue;
+      var u = (q.s - s0) / (se - s0), h = 0.5 * Math.sin(Math.PI * Math.pow(u, 0.55)), mid = 0.42;
+      var bk = back[j], wj = ws[j];
+      vein.push({ x: q.x + bk.nx * wj * (mid - h * 0.5), y: q.y + bk.ny * wj * (mid - h * 0.5) });
+      vb.push({ x: q.x + bk.nx * wj * (mid + h * 0.5), y: q.y + bk.ny * wj * (mid + h * 0.5) });
     }
-    return { spine: sp, outline: outline, vein: vein, o: o, tips: tips, tip: { x: tp.x, y: tp.y, ang: Math.atan2(tp.y - tq.y, tp.x - tq.x) }, belly: belly };
+    vein = vein.concat(vb.reverse());
+    var tp = sp[sp.length - 1], tq = sp[sp.length - 4];
+    return { spine: sp, outline: outline, vein: vein, o: o, tips: tips, tip: { x: tp.x, y: tp.y, ang: Math.atan2(tp.y - tq.y, tp.x - tq.x) } };
   };
 
   // three-flame kranok (กนกสามตัว): curl (ตัวเหงา), sheath (กาบ), flame (ยอด) from one foot
   K.samTua = function (p) {
     var L = p.len || 100, lean = p.lean == null ? 0.18 : p.lean, mir = !!p.mirror, m = mir ? -1 : 1;
-    var base = { fat: p.fat == null ? 1.2 : p.fat, teeth: p.teeth == null ? 3 : p.teeth, depth: p.depth == null ? 0.55 : p.depth, flick: p.flick == null ? 7 : p.flick, mirror: mir, turns: p.turns || 1.15 };
+    var base = { teeth: p.teeth == null ? 3 : p.teeth, depth: p.depth == null ? 0.55 : p.depth, flick: p.flick == null ? 7 : p.flick, mirror: mir, turns: p.turns || 1.15 };
     function f(q) { var r = {}; for (var k in base) r[k] = base[k]; for (var k2 in q) r[k2] = q[k2]; return r; }
     // stacked up the diagonal as in the teaching drawing: curl low and in front, sheath behind it, flame on top
     var parts = [
-      { role: "ngao", shape: K.flame(f({ len: L * 0.42, lean: lean + 0.1, width: 0.26, teeth: Math.max(0, base.teeth - 1) })), dx: L * 0.15 * m, dy: 0 },
-      { role: "kab", shape: K.flame(f({ len: L * 0.56, lean: lean - 0.05, width: 0.25, teeth: Math.max(0, base.teeth - 1) })), dx: -L * 0.08 * m, dy: -L * 0.12 },
-      { role: "yod", shape: K.flame(f({ len: L * 0.8, lean: lean + 0.12, width: 0.24, teeth: base.teeth + 1 })), dx: L * 0.06 * m, dy: -L * 0.37 }
+      { role: "ngao", shape: K.flame(f({ len: L * 0.42, lean: lean + 0.1, teeth: Math.max(0, base.teeth - 1) })), dx: L * 0.15 * m, dy: 0 },
+      { role: "kab", shape: K.flame(f({ len: L * 0.56, lean: lean - 0.05, teeth: Math.max(0, base.teeth - 1) })), dx: -L * 0.08 * m, dy: -L * 0.12 },
+      { role: "yod", shape: K.flame(f({ len: L * 0.8, lean: lean + 0.12, teeth: base.teeth + 1 })), dx: L * 0.06 * m, dy: -L * 0.37 }
     ];
     return parts;
   };
@@ -154,35 +163,21 @@
     if (st.rot) ctx.rotate(st.rot);
     if (st.scale) ctx.scale(st.scale, st.scale);
     if (st.alpha != null) ctx.globalAlpha = st.alpha;
-    var sc = st.scale || 1, lw = (st.lineW || 1.6) / sc, B = shape.belly;
+    var sc = st.scale || 1, lw = (st.lineW || 1.6) / sc, g = st.gold || K.GOLD;
     ctx.lineJoin = "round"; ctx.lineCap = "round";
-    function shapePath() {
-      K.path(ctx, shape.outline, true);
-      if (B) { ctx.moveTo(B.x + B.r, B.y); ctx.arc(B.x, B.y, B.r, 0, Math.PI * 2); }
-    }
-    var gr = null, g = st.gold || K.GOLD;
+    K.path(ctx, shape.outline, true);
     if (st.fill !== false) {
       if (st.grad !== false) {
-        var L = shape.o.len; gr = ctx.createLinearGradient(-L * 0.3, 0, L * 0.3, -L);
-        gr.addColorStop(0, g[2]); gr.addColorStop(0.45, g[1]); gr.addColorStop(1, g[0]);
-      }
-    }
-    shapePath();
-    if (B && st.line !== false) {
-      // stroke under the fill so the union keeps only its outer edge
-      ctx.strokeStyle = st.line || K.LACQUER; ctx.lineWidth = lw * 2; ctx.stroke();
-    }
-    if (st.fill !== false) {
-      ctx.fillStyle = gr || g[1];
-      if (B) { K.path(ctx, shape.outline, true); ctx.fill(); ctx.beginPath(); ctx.arc(B.x, B.y, B.r, 0, Math.PI * 2); ctx.fill(); }
-      else ctx.fill();
+        var L = shape.o.len, gr = ctx.createLinearGradient(-L * 0.3, L * 0.1, L * 0.3, -L);
+        gr.addColorStop(0, g[2]); gr.addColorStop(0.5, g[1]); gr.addColorStop(1, g[0]);
+        ctx.fillStyle = gr;
+      } else ctx.fillStyle = g[1];
+      ctx.fill();
     }
     if (st.line !== false) {
-      ctx.strokeStyle = st.line || K.LACQUER; ctx.lineWidth = lw;
-      if (!B) { shapePath(); ctx.stroke(); }
-      if (B) { K.path(ctx, B.curl, false); ctx.lineWidth = lw * 1.1; ctx.stroke(); }
+      ctx.strokeStyle = st.line || K.LACQUER; ctx.lineWidth = lw; ctx.stroke();
       if (st.vein !== false && shape.vein.length > 2) {
-        K.path(ctx, shape.vein, false); ctx.lineWidth = lw * 0.8; ctx.stroke();
+        K.path(ctx, shape.vein, true); ctx.lineWidth = lw * 0.8; ctx.stroke();
       }
     }
     ctx.restore();
@@ -273,7 +268,7 @@
       var c = turnsTot / Math.log((Lb + e) / e);
       var br = K.walk(x0, y0, th0 + sgn * 0.35, Lb, function (s) { return sgn * c / (Lb - s + e); }, 220);
       stems.push({ pts: br, w: o.stem * 0.9, order: 1, k: k });
-      eyes.push({ x: br[br.length - 1].x, y: br[br.length - 1].y, k: k });
+      eyes.push({ x: br[br.length - 1].x, y: br[br.length - 1].y, th: br[br.length - 1].th, sgn: sgn, k: k });
       // flames on the outside of the branch, leaning forward like flames on a turning wheel
       var nl = o.leaves;
       for (var j = 0; j < nl; j++) {
