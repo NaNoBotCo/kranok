@@ -1,0 +1,13 @@
+{
+ "th": "กนก วาดด้วยคณิต",
+ "en": "Kranok, Drawn",
+ "line_th": "กระหนก เปลวไฟแห่งลายไทย วาดด้วยคณิต ตัวเหงา กนกสามตัว ลายก้านขด ลายหน้ากระดานเจ็ดแบบ ลายรดน้ำ และลายคำล้านนา",
+ "line_en": "kranok, the flame of Thai ornament, drawn with math: the snail-shell curl, the three-figure kranok, the coiled-stem scroll, seven border bands, gold on black lacquer and Lanna lai kham",
+ "icon": "i-lotus",
+ "shipped": "2026-10-03",
+ "group": "wat",
+ "where": "both",
+ "served": "docs",
+ "shelves": ["wat", "museums-galleries"],
+ "words": ["kranok", "kanok", "lai thai", "thai pattern", "thai ornament", "thai art", "lai rot nam", "gold leaf", "lacquer", "lai kham", "temple art", "gable", "frieze", "spiral", "กนก", "กระหนก", "ลายไทย", "ลายกนก", "ลายกระหนก", "กนกสามตัว", "ตัวเหงา", "ลายก้านขด", "ลายรดน้ำ", "ลายคำ", "ลายหน้ากระดาน", "ประจำยาม", "ปิดทอง"]
+}

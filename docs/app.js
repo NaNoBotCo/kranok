@@ -43,11 +43,21 @@
   function slider(id, fn) { var e = $(id); if (e) e.addEventListener("input", fn); return e; }
   function fmt(n, d) { return Number(n).toLocaleString(U.lang === "th" ? "th-TH" : "en-US", { maximumFractionDigits: d == null ? 1 : d, minimumFractionDigits: d == null ? 0 : d }); }
 
+  /* the eye of a coil is the head of a kranok: its curl carries on the coil's turn */
+  var eyeCache = {};
+  function eyeFlame(c, e, size, k) {
+    var key = (e.sgn > 0 ? "m" : "n") + Math.round(size);
+    var f = eyeCache[key] || (eyeCache[key] = K.flame({ len: size, mirror: e.sgn > 0, teeth: 3, flick: 6 }));
+    var a = f.spine[0], b = f.spine[3], phi = Math.atan2(b.y - a.y, b.x - a.x);
+    var rot = e.th + Math.PI - phi, sc = k == null ? 1 : k, cr = Math.cos(rot) * sc, sr = Math.sin(rot) * sc;
+    K.draw(c, f, { x: e.x - (a.x * cr - a.y * sr), y: e.y - (a.x * sr + a.y * cr), rot: rot, scale: sc, lineW: 1.3 });
+  }
+
   /* krachang: a row of upright leaves, each two mirrored flames meeting at a point */
   function krachangRow(c, x0, x1, y, size, up) {
     var n = Math.max(3, Math.round((x1 - x0) / (size * 0.62))), step = (x1 - x0) / n;
-    var a = K.flame({ len: size, lean: 0.32, teeth: 2, depth: 0.5, turns: 1.1, width: 0.2, flick: 4 });
-    var b = K.flame({ len: size, lean: 0.32, teeth: 2, depth: 0.5, turns: 1.1, width: 0.2, flick: 4, mirror: true });
+    var a = K.flame({ len: size, lean: 0.32, teeth: 2, depth: 0.5, turns: 1.2, flick: 4 });
+    var b = K.flame({ len: size, lean: 0.32, teeth: 2, depth: 0.5, turns: 1.2, flick: 4, mirror: true });
     for (var i = 0; i < n; i++) {
       var x = x0 + step * (i + 0.5), r = up ? 0 : Math.PI;
       K.draw(c, b, { x: x - size * 0.13, y: y, rot: r, lineW: 1.2 });
@@ -62,11 +72,11 @@
     function build() {
       g = fit(cv, function () { return CARD ? 630 : Math.max(460, Math.min(innerHeight * 0.78, 720)); });
       W = g.w; H = g.h;
-      var bandH = Math.min(H * 0.56, Math.max(W * 0.42, 250)), waves = Math.max(1.5, Math.round(W / 420 * 2) / 2);
-      S = K.scroll({ w: W, h: bandH, waves: waves, amp: 0.5, turns: 1.35, size: 0.86, leaves: 6, leaf: 0.36, stem: Math.max(8, bandH * 0.035), from: 0.14, to: 0.76, tilt: 0.62 });
-      S.y0 = H - bandH - Math.min(70, H * 0.1);
+      var bandH = Math.min(H * 0.42, Math.max(W * 0.3, 220)), waves = Math.max(1.5, Math.round(W / 420 * 2) / 2);
+      S = K.scroll({ w: W, h: bandH, waves: waves, amp: 0.5, turns: 1.35, size: 0.86, leaves: 5, leaf: 0.42, stem: Math.max(8, bandH * 0.035), from: 0.14, to: 0.76, tilt: 0.62 });
+      S.y0 = H - bandH - Math.min(56, H * 0.08);
       leaves = S.leaves.map(function (l) {
-        return { l: l, f: K.flame({ len: l.len, mirror: l.mirror, teeth: 2, width: 0.2, flick: 6 }), ph: Math.random() * TAU };
+        return { l: l, f: K.flame({ len: l.len, mirror: l.mirror, teeth: 2, flick: 6 }), ph: Math.random() * TAU };
       });
     }
     build();
@@ -101,7 +111,7 @@
       });
       S.eyes.forEach(function (e) {
         var k = Math.max(0, Math.min(1, (x1 - e.x) / (lam * 0.6)));
-        if (k > 0.6) knob(c, e.x, e.y, Math.max(4, S.lam * 0.016));
+        if (k > 0) eyeFlame(c, e, S.lam * 0.3, k);
       });
       c.restore();
     }
@@ -256,8 +266,8 @@
     function build() {
       g = fit(cv, function (w) { return Math.max(260, Math.min(380, w * 0.42)); });
       var waves = +$("swaves").value;
-      S = K.scroll({ w: g.w, h: g.h * 0.92, waves: waves, amp: 0.5, turns: +$("sturns").value, size: 0.82, leaves: +$("sleaves").value, leaf: 0.3, stem: Math.max(6, g.h * 0.03), from: 0.14, to: 0.78, tilt: 0.62 });
-      LV = S.leaves.map(function (l) { return K.flame({ len: l.len, mirror: l.mirror, teeth: 2, width: 0.2, flick: 6 }); });
+      S = K.scroll({ w: g.w, h: g.h * 0.92, waves: waves, amp: 0.5, turns: +$("sturns").value, size: 0.82, leaves: +$("sleaves").value, leaf: 0.38, stem: Math.max(6, g.h * 0.03), from: 0.14, to: 0.78, tilt: 0.62 });
+      LV = S.leaves.map(function (l) { return K.flame({ len: l.len, mirror: l.mirror, teeth: 2, flick: 6 }); });
     }
     function draw(t) {
       if (t0 == null) t0 = t;
@@ -278,7 +288,7 @@
           var k = Math.max(0, Math.min(1, (x1 - l.x) / (lam * 0.4)));
           if (k > 0) K.draw(c, LV[i], { x: l.x, y: l.y, rot: l.ang + Math.PI / 2, scale: k, lineW: 1.2 });
         });
-        S.eyes.forEach(function (e) { if (x1 - e.x > lam * 0.36) knob(c, e.x, e.y, Math.max(3.5, lam * 0.016)); });
+        S.eyes.forEach(function (e) { var k = Math.max(0, Math.min(1, (x1 - e.x) / (lam * 0.5))); if (k > 0) eyeFlame(c, e, lam * 0.3, k); });
       }
       c.restore();
     }
@@ -306,17 +316,17 @@
     };
     function draw() {
       var g = fit(cv, function (w) { return Math.max(170, Math.min(240, w * 0.26)); });
-      var c = g.c, w = g.w, h = g.h, cy = h / 2, s = h * 0.5;
+      var c = g.c, w = g.w, h = g.h, cy = h / 2, s = h * 0.4;
       lacquer(c, w, h);
-      var motif = K.flame({ len: s, teeth: 3, depth: 0.6, lean: 0.42 });
-      var cw = s * 0.62, n = Math.ceil(w / cw) + 2;
+      var motif = K.flame({ len: s, teeth: 3, lean: 0.3 });
+      var cw = s * 0.82, n = Math.ceil(w / cw) + 2;
       c.strokeStyle = "rgba(247,221,138,.14)"; c.lineWidth = 1;
       c.beginPath(); c.moveTo(0, cy); c.lineTo(w, cy); c.stroke();
       for (var j = 0; j < n; j++) {
         var x = j * cw;
         OPS[kind](j).forEach(function (f) {
           c.save(); c.translate(x + cw / 2, cy); c.scale(f[0] ? -1 : 1, f[1] ? -1 : 1);
-          K.draw(c, motif, { x: -cw * 0.3, y: -h * 0.03, lineW: 1.2 });
+          K.draw(c, motif, { x: -cw * 0.12, y: -h * 0.06, lineW: 1.2 });
           c.restore();
         });
       }
@@ -342,8 +352,8 @@
       lacquer(c, w, h);
       var R = Math.min(w, h) * 0.46, cx = w / 2, cy = h / 2;
       var ln = mir ? 0.1 : 0.35;
-      var f = K.flame({ len: R * 0.8, teeth: 3, depth: 0.6, lean: ln });
-      var fm = K.flame({ len: R * 0.8, teeth: 3, depth: 0.6, lean: ln, mirror: true });
+      var f = K.flame({ len: R * 0.62, teeth: 3, lean: ln });
+      var fm = K.flame({ len: R * 0.62, teeth: 3, lean: ln, mirror: true });
       var rot0 = reduce ? 0 : t * 0.08;
       for (var i = 0; i < n; i++) {
         var a = rot0 + i * TAU / n;
@@ -401,8 +411,8 @@
         if (len < step) continue; len = 0;
         var q0 = pts[i - 2], q1 = pts[i + 2], tang = Math.atan2(q1.y - q0.y, q1.x - q0.x), u = i / pts.length;
         var inCurl = i > p.length; if (inCurl) side = -sgn;
-        var sz = 46 * (1 - u * 0.55);
-        leaves.push({ x: pts[i].x, y: pts[i].y, ang: tang + side * (Math.PI / 2 - 0.7), f: K.flame({ len: sz, teeth: 2, width: 0.2, flick: 6, mirror: side > 0 }), u: u });
+        var sz = 58 * (1 - u * 0.5);
+        leaves.push({ x: pts[i].x, y: pts[i].y, ang: tang + side * (Math.PI / 2 - 0.7), f: K.flame({ len: sz, teeth: 2, flick: 6, mirror: side > 0 }), u: u });
         if (!inCurl) side = -side;
       }
       return { pts: pts, leaves: leaves, end: pts[pts.length - 1], born: performance.now() / 1000 };

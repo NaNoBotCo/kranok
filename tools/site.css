@@ -101,3 +101,4 @@ input[type=range]{width:100%;accent-color:var(--lamp);min-height:32px}
 label.lab{display:block;font-size:15px;margin-top:10px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .ph img{max-height:560px;object-fit:contain;background:transparent}
+html.card .lede{display:none}

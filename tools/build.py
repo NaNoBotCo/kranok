@@ -14,7 +14,10 @@ sys.path.insert(0, HERE)
 from copy_text import UI, PHOTOS, SOURCES  # noqa: E402
 
 DOCS = os.path.join(HERE, "..", "docs")
-BASE = "https://nanobotco.github.io/kranok/"
+GH = "https://nanobotco.github.io/kranok/"
+CANON = "https://motdang.net/sites/kranok/"   # motdang.net is canonical; the GitHub copy points to it
+MD_ROOT = "/sites/kranok/"                    # motdang answers /sites/kranok without the slash, so motdang paths are root-relative
+BASE = CANON
 E = html.escape
 CSS = open(os.path.join(HERE, "site.css")).read()
 GOOGLE_ESCAPE = '<script>if(/[.]translate[.]goog$/.test(location.hostname))location.replace("https://"+location.hostname.slice(0,-15).replace(/--/g,"~").replace(/-/g,".").replace(/~/g,"-")+location.pathname+location.search.replace(/([?&])_x_tr_[^&]*/g,"$1").replace(/[?&]+$/,"").replace(/[?]&+/,"?")+location.hash)</script>'
@@ -29,14 +32,16 @@ def rng(id_, label, lo, hi, step, val, out=None):
     return f'<label class="lab" for="{id_}">{E(label)}{o}</label><input id="{id_}" type="range" min="{lo}" max="{hi}" step="{step}" value="{val}">'
 
 
-def page(lang):
+def page(lang, md=False):
     u = UI[lang]
-    root = "" if lang == "en" else "../"
-    url = BASE if lang == "en" else BASE + "th/"
+    root = MD_ROOT if md else ("" if lang == "en" else "../")
+    url = CANON if lang == "en" else CANON + "th/"
     js = {k: u[k] for k in ("same_gap", "changes", "b_axis_y", "b_axis_x", "b_eye", "b_tip", "r_moves", "own_hint", "frieze", "steps", "part_names", "play", "pause")}
     js["lang"] = lang
     nav = "".join(f'<a href="#{a}">{E(b)}</a>' for a, b in u["nav"])
     ol = u["lang_other"]
+    if md:
+        ol = (MD_ROOT + ("th/" if lang == "en" else ""), ol[1], ol[2])
     head = f'''<!doctype html><html lang="{lang}" translate="no" class="notranslate"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google" content="notranslate">
@@ -65,7 +70,7 @@ def page(lang):
 <span class="lang"><b>{E(u["lang_this"])}</b> | <a href="{ol[0]}" hreflang="{ol[2]}">{E(ol[1])}</a></span></div></header>
 '''
     hero = f'''<section id="top" class="hero"><canvas id="scene" role="img" aria-label="{E(u["hero_alt"])}"></canvas>
-<div class="hero-t"><p class="kick">{E(u["kicker"])}</p><h1>{E(u["title"])}</h1><p class="lede">{E(u["lede"])}</p><p class="cardline">{E(u["cardline"])}<br><span>nanobotco.github.io/kranok</span></p></div></section>
+<div class="hero-t"><p class="kick">{E(u["kicker"])}</p><h1>{E(u["title"])}</h1><p class="lede">{E(u["lede"])}</p><p class="cardline">{E(u["cardline"])}<br><span>motdang.net/sites/kranok</span></p></div></section>
 '''
     what = f'''<section id="kranok" class="sec"><div class="in"><p class="kick">{E(u["what_kick"])}</p><h2>{E(u["what_h"])}</h2>{paras(u["what_p"])}</div></section>
 '''
@@ -95,7 +100,7 @@ def page(lang):
     scroll = f'''<section id="scroll" class="sec rock"><div class="in"><p class="kick">{E(u["scroll_kick"])}</p><h2>{E(u["scroll_h"])}</h2>{paras(u["scroll_p"])}
 <canvas id="scrollcv" class="cv" role="img" aria-label="{E(u["scroll_h"])}"></canvas>
 <div class="btns"><button id="sgrow" class="pill hot" type="button">{E(u["s_grow"])}</button><button id="sbones" class="pill" type="button" aria-pressed="false">{E(u["s_bones"])}</button></div>
-<div class="readout" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div>{rng("swaves", u["s_waves"], 1, 6, 0.5, 3)}</div><div>{rng("sturns", u["s_turns"], 0.5, 2.4, 0.05, 1.3)}</div><div>{rng("sleaves", u["s_leaves"], 0, 8, 1, 5)}</div></div>
+<div class="readout" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"><div>{rng("swaves", u["s_waves"], 1, 6, 0.5, 3)}</div><div>{rng("sturns", u["s_turns"], 0.5, 2.4, 0.05, 1.3)}</div><div>{rng("sleaves", u["s_leaves"], 0, 7, 1, 4)}</div></div>
 <p class="note">{u["scroll_note"]}</p></div></section>
 '''
     fb = "".join(f'<button class="pill" type="button" data-f="{k}" aria-pressed="{"true" if k == "p1" else "false"}">{E(u["frieze"][k][0])}</button>' for k in ("p1", "p11g", "p1m1", "p11m", "p2", "p2mg", "p2mm"))
@@ -134,27 +139,44 @@ def page(lang):
     return head + "<main>" + hero + what + curl + bend + three + nest + scroll + border + own + where + wd + so + "</main>" + tail
 
 
-def main():
-    os.makedirs(os.path.join(DOCS, "th"), exist_ok=True)
+def write_site(out, md):
+    os.makedirs(os.path.join(out, "th"), exist_ok=True)
+    host = CANON if md else GH
     for lang, path in (("en", "index.html"), ("th", "th/index.html")):
-        with open(os.path.join(DOCS, path), "w") as f:
-            f.write(page(lang))
-    with open(os.path.join(DOCS, "sitemap.xml"), "w") as f:
+        with open(os.path.join(out, path), "w") as f:
+            f.write(page(lang, md))
+    with open(os.path.join(out, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                f'<url><loc>{BASE}</loc></url>\n<url><loc>{BASE}th/</loc></url>\n</urlset>\n')
-    with open(os.path.join(DOCS, "robots.txt"), "w") as f:
-        f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n")
+                f'<url><loc>{host}</loc></url>\n<url><loc>{host}th/</loc></url>\n</urlset>\n')
+    if not md:
+        with open(os.path.join(out, "robots.txt"), "w") as f:
+            f.write(f"User-agent: *\nAllow: /\nSitemap: {host}sitemap.xml\n")
     u = UI["en"]
     strip = lambda s: html.unescape(__import__("re").sub("<[^>]+>", "", s))
-    lines = ["# Kranok, Drawn · กนก วาดด้วยคณิต", "", u["desc"], "", f"English: {BASE}", f"Thai: {BASE}th/", ""]
+    lines = ["# Kranok, Drawn · กนก วาดด้วยคณิต", "", u["desc"], "", f"English: {CANON}", f"Thai: {CANON}th/", ""]
     for key in ("what", "curl", "bend", "three", "nest", "scroll", "bord", "rose", "own", "where", "lanna"):
         lines += ["## " + strip(u[key + "_h"]), ""] + [strip(p) for p in u[key + "_p"]] + [""]
     lines += ["## Words", ""] + [f"- {a} ({b}): {c}" for a, b, c in u["words"]]
     lines += ["", "## Sources", ""] + [f"- {t}: {h}" for t, h in SOURCES]
     lines += ["", "## Licence", "", "Text CC BY 4.0, NaNoBotCo. Code MIT. Photographs keep their own licences, listed on the page.", ""]
-    with open(os.path.join(DOCS, "llms.txt"), "w") as f:
+    with open(os.path.join(out, "llms.txt"), "w") as f:
         f.write("\n".join(lines))
-    print("built en + th")
+
+
+def main():
+    write_site(DOCS, False)
+    print("built en + th -> docs/")
+    if "--motdang" in sys.argv:
+        import shutil
+        md = os.path.join(HERE, "..", "..", "mot-dang")
+        for sub in ("assets/sites/kranok", "docs/sites/kranok"):
+            out = os.path.join(md, sub)
+            if os.path.isdir(out):
+                shutil.rmtree(out)
+            shutil.copytree(DOCS, out, ignore=shutil.ignore_patterns("robots.txt", ".DS_Store"))
+            write_site(out, True)
+            shutil.copy(os.path.join(HERE, "motdang_card.json"), os.path.join(out, "card.json"))
+            print("built en + th ->", os.path.normpath(out))
 
 
 if __name__ == "__main__":
